@@ -1,0 +1,19 @@
+load("//helmdocs:defs.bzl", "helmdocs_generate")
+load("@bazel_skylib//rules:diff_test.bzl", "diff_test")
+
+helmdocs_generate(
+    name = "example",
+    chart_file = ":Chart.yaml",
+    template_files = [
+        ":partials.gotmpl",
+        ":template.gotmpl",
+    ],
+    values_file = ":values.yaml",
+)
+
+diff_test(
+    name = "test",
+    failure_message = "Run 'bazel run //example' to update",
+    file1 = ":example",
+    file2 = ":README.md",
+)

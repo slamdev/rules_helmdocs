@@ -1,0 +1,2 @@
+# replicaCount -- number of replicas for nginx deployment.
+replicaCount: 1
